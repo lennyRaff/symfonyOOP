@@ -1,0 +1,11 @@
+app:
+    resource: @AppBundle/Controller/
+    type:     annotation
+
+# avoid error when using optional url parameter with trailing slash in URL
+remove_trailing_slash:
+    path: /{url}
+    defaults: { _controller: AppBundle:Redirecting:removeTrailingSlash }
+    requirements:
+        url: .*/$
+    methods: [GET]

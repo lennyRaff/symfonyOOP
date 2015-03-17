@@ -1,0 +1,20 @@
+<div class="overlay">
+<div class="form-wrap">
+    <h3>Connect to your account</h3>
+    <form action="/app/example/login" class="login-portal" method="POST">
+        <fieldset>
+            <label for="username">Username</label>
+            {% autoescape 'html' %}
+                <input type="text" name="username" />
+            {% endautoescape %}
+        </fieldset>
+        <fieldset>
+            <label for="password">Password</label>
+            {% autoescape 'html' %}
+                <input type="password" name="password" />
+            {% endautoescape %}
+        </fieldset>
+        <input type="submit" value="Log in" />
+    </form>
+</div>
+</div>
