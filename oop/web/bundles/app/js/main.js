@@ -2,64 +2,87 @@
 
     Leopard = {
 
+        hbTemplateFolder: '/bundles/app/ajax/HandlebarsTpl/',
+
         init: function() {
 
             this.adminLoginBtnClick();
         },
 
-        ajaxModel: function(url) {
-
-            var THIS = this, ajaxCache = sessionStorage.getItem('ajaxTwigs'), ajaxRes, key;
-
-            if( ajaxCache ) {
-
-                // ajaxRes = JSON.parse(ajaxCache);
-                
-                for( key in ajaxRes ) {
-                    if( ajaxRes.hasOwnProperty(key) ) {
-                        // THIS.insertAjax(ajaxRes[key]);
-                        return;
-                    }
-                }
-            }
-
-            $.ajax({
-                dataType: "json",
-                type: "GET",
-                data: {},
-                url: '/app/example/ajax/' + url,
-                success: function ($res) {
-
-                    THIS.insertAjax($res);
-                    THIS.sessionStore('ajaxTwigs', url, $res);
-                },
-                error: function() {
-                }
-            });
-        },
-
         adminLoginBtnClick: function() {
-
-            var THIS = this, jqObj, urlVal;
+            // getting name of template and data associated and make AJAX call
+            
+            var THIS = this, jqObj, urlVal, dataObject = {};
 
             $adminLoginBtns.click(function() {
 
-                jqObj = this, urlVal = $(jqObj).attr('data-urlVal');
-                THIS.ajaxModel(urlVal);
+                jqObj = this, urlVal = $(jqObj).attr('data-url_val');
+
+                $.each($(jqObj).data(), function(k, v) {
+                    if( k !== 'url_val' ) {
+
+                        dataObject[k] = v;
+                    }
+                });
+
+                // call the Handlebars template with AJAX
+                THIS.handlebarsModel(urlVal, dataObject);
             });
         },
 
-        sessionStore: function(key, url, val) {
-
-            if( !sessionStorage.getItem(key) ) {
-
-                sessionStorage.setItem( key, JSON.stringify({ url : val }) );
-            }
+        handlebarsModel: function(name, dataObject) {
+            // load Handlebars template
+            
+            var compiledTemplate = this.getHandlebarsTemplate(this.hbTemplateFolder + name);
+            $('body').append(compiledTemplate(dataObject));
+            this.ajaxFormSend();
         },
 
-        insertAjax: function($res) {
+        ajaxFormSend: function() {
+            // submitting forms by AJAX
 
-            $('body').append($res);
+            var ajaxForm = $('.form-wrap form.ajaxForm'), url, key;
+
+            ajaxForm.submit(function() {
+
+                var url = $(this).attr('action');
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: ajaxForm.serialize(),
+                    success: function(data) {
+
+                        var dataObj = JSON.parse(data);
+                    },
+                    complete: function(xhr) {
+                        if ( xhr.status == 302 && !dataObj.error ) {
+
+                            location.href = '/app/example/admin';
+                        }
+                    }
+                });
+                return false; // avoid submit
+            });
+        },
+
+        getHandlebarsTemplate: function(name) {
+            // Handlebars template function
+            
+            if (Handlebars.templates === undefined || Handlebars.templates[name] === undefined) {
+                $.ajax({
+                    dataType : 'text',
+                    url : name + '.handlebars',
+                    success : function(data) {
+                        if (Handlebars.templates === undefined) {
+                            Handlebars.templates = {};
+                        }
+                        Handlebars.templates[name] = Handlebars.compile(data);
+                    },
+                    async : false
+                });
+            }
+            return Handlebars.templates[name];
         }
     };
 

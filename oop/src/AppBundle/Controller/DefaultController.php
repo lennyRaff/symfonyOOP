@@ -26,23 +26,24 @@ class DefaultController extends Controller
     {
         if(strtoupper($this->getRequest()->getMethod()) === 'POST') {
 
+            // get all POST data and find user from db
             $fields = $this->getRequest()->request->all();
             $em = $this->getDoctrine()->getManager();
             $userRepo = $em->getRepository('AppBundle:User');
-            $user = $em->getRepository('AppBundle:User')->findOneBy(array('username' => $fields['username'], 'password' => $fields['password']));
+            $user = $em->getRepository('AppBundle:User')->findOneBy(array('username' => $fields['username'], 'password' => sha1($fields['password'])));
 
             if( is_null($user) === false ) {
 
                 $session = $this->getRequest()->getSession();
                 $session->set('user', $user);
-                return $this->redirect('admin');
+                return $this->redirectToRoute('adminpage');
             }else{
-                $errors[] = 'The username and password supplied do not match';
+                $errors['error'] = 'The username and password supplied do not match';
             }
-            die();
         }else{
-            $errors[] = 'The method you supplied is invalid';
+            $errors['error'] = 'The method you supplied is invalid';
         }
+        return $this->redirectToRoute('homepage', array(json_encode($errors)));
     }
 
     /**

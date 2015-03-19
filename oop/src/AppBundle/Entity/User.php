@@ -68,7 +68,7 @@ class User
      */
     public function setPassword($password)
     {
-        $this->password = sha1($password);
+        $this->password = $password;
 
         return $this;
     }
@@ -80,6 +80,6 @@ class User
      */
     public function getPassword()
     {
-        return sha1($this->password);
+        return $this->password;
     }
 }

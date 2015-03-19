@@ -46,8 +46,9 @@ header{
 fieldset {
       margin: 10px 0;
 }
-label {
-    width: 110px;
+.form-wrap label {
+    width: 130px;
+    text-align: left;
 }
 button, html input[type=button], input[type=reset], input[type=submit] {
     margin-top: 20px;
