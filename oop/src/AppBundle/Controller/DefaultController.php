@@ -36,14 +36,21 @@ class DefaultController extends Controller
 
                 $session = $this->getRequest()->getSession();
                 $session->set('user', $user);
-                return $this->redirectToRoute('adminpage');
+                // return $this->redirectToRoute('adminpage');
+                return new Response(json_encode(array(
+                    'authent' => true
+                )));
             }else{
                 $errors['error'] = 'The username and password supplied do not match';
+                
             }
         }else{
             $errors['error'] = 'The method you supplied is invalid';
         }
-        return $this->redirectToRoute('homepage', array(json_encode($errors)));
+        // return $this->redirectToRoute('homepage', array(json_encode($errors)));
+        return new Response(json_encode(array(
+            $errors
+        )));
     }
 
     /**

@@ -35,6 +35,9 @@
             
             var compiledTemplate = this.getHandlebarsTemplate(this.hbTemplateFolder + name);
             $('body').append(compiledTemplate(dataObject));
+            setTimeout(function() {
+                $('.overlay').addClass('whiteBg');
+            }, 50);
             this.ajaxFormSend();
         },
 
@@ -54,12 +57,6 @@
                     success: function(data) {
 
                         var dataObj = JSON.parse(data);
-                    },
-                    complete: function(xhr) {
-                        if ( xhr.status == 302 && !dataObj.error ) {
-
-                            location.href = '/app/example/admin';
-                        }
                     }
                 });
                 return false; // avoid submit
