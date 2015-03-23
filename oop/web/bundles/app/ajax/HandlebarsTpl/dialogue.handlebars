@@ -1,0 +1,22 @@
+<div class="overlay">
+    <div class="form-wrap">
+        <h3>{{title}}</h3>
+        <form action="{{form_action}}" class="portal ajaxForm" method="POST">
+            <fieldset>
+                <label for="username">Username</label>
+                    <input type="text" name="username" />
+            </fieldset>
+            <fieldset>
+                <label for="password">Password</label>
+                    <input type="password" name="password" />
+            </fieldset>
+            {{#if button_sign_up}}
+            <fieldset>
+                <label for="confirm_password">Retype Password</label>
+                    <input type="password" name="confirm_password" />
+            </fieldset>
+            {{/if}}
+            <input type="submit" value="{{button_text}}" />
+        </form>
+    </div>
+</div>
