@@ -26,31 +26,41 @@
                 });
 
                 // call the Handlebars template with AJAX
-                THIS.handlebarsModel(urlVal, dataObject);
+                THIS.handlebarsModel(urlVal, dataObject, 'body');
+
+                // if we are adding user form to the page
+                if( urlVal == 'dialogue' ) {
+                    // fading effect of overlay
+                    THIS.setTimeoutFn("$('.overlay').addClass('whiteBg');", 50);
+
+                    $('.overlay').click(function(e) {
+                        $(this).add('.js-ajaxElems').remove();
+                    });
+                    THIS.ajaxFormSend();
+                }
             });
         },
 
-        handlebarsModel: function(name, dataObject) {
+        handlebarsModel: function(name, dataObject, parent) {
             // load Handlebars template
             
             var compiledTemplate = this.getHandlebarsTemplate(this.hbTemplateFolder + name);
-            $('body').append(compiledTemplate(dataObject));
+            $(parent).append(compiledTemplate(dataObject));
+
+        },
+
+        setTimeoutFn: function(fn, delay) {
+            // generic funtion for setTimeout functions
+
             setTimeout(function() {
-                $('.overlay').addClass('whiteBg');
-            }, 50);
-            $('.overlay').click(function(e) {
-                if( e.target.className.indexOf('overlay') === -1 ) {
-                    return false;
-                }
-                $(this).remove();
-            });
-            this.ajaxFormSend();
+                eval(fn);
+            }, delay);
         },
 
         ajaxFormSend: function() {
             // submitting forms by AJAX
 
-            var THIS = this, ajaxForm = $('.form-wrap form.ajaxForm'), url, key, dataObj;
+            var THIS = this, ajaxForm = $('.form-wrap form.ajaxForm'), url, key, dataObj = {};
 
             ajaxForm.submit(function() {
 
@@ -69,7 +79,8 @@
                         if(dataObj.authent) {
                             THIS.changeURL('/app/example/admin');
                         }else{
-                            console.log('Ah shucks');
+                            THIS.handlebarsModel('partMsg', { 'class': 'error_message', response : dataObj }, '.form-wrap.js-ajaxElems');
+                            console.log({ 'class': 'error_message', response : dataObj });
                         }
                     }
                 });
