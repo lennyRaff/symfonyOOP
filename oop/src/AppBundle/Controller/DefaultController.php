@@ -42,15 +42,14 @@ class DefaultController extends Controller
                 )));
             }else{
                 $errors['error'] = 'The username and password supplied do not match';
-                
             }
         }else{
             $errors['error'] = 'The method you supplied is invalid';
         }
         // return $this->redirectToRoute('homepage', array(json_encode($errors)));
-        return new Response(json_encode(array(
+        return new Response(json_encode(
             $errors
-        )));
+        ));
     }
 
     /**

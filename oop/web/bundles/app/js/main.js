@@ -38,13 +38,19 @@
             setTimeout(function() {
                 $('.overlay').addClass('whiteBg');
             }, 50);
+            $('.overlay').click(function(e) {
+                if( e.target.className.indexOf('overlay') === -1 ) {
+                    return false;
+                }
+                $(this).remove();
+            });
             this.ajaxFormSend();
         },
 
         ajaxFormSend: function() {
             // submitting forms by AJAX
 
-            var ajaxForm = $('.form-wrap form.ajaxForm'), url, key;
+            var THIS = this, ajaxForm = $('.form-wrap form.ajaxForm'), url, key, dataObj;
 
             ajaxForm.submit(function() {
 
@@ -56,11 +62,25 @@
                     data: ajaxForm.serialize(),
                     success: function(data) {
 
-                        var dataObj = JSON.parse(data);
+                        dataObj = JSON.parse(data);
+                    },
+                    complete: function(jqx) {
+
+                        if(dataObj.authent) {
+                            THIS.changeURL('/app/example/admin');
+                        }else{
+                            console.log('Ah shucks');
+                        }
                     }
                 });
                 return false; // avoid submit
             });
+        },
+
+        changeURL: function(url) {
+            // redirect
+            
+            window.location.href = url;
         },
 
         getHandlebarsTemplate: function(name) {
