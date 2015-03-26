@@ -40,6 +40,8 @@ class DefaultController extends Controller
                 return new Response(json_encode(array(
                     'authent' => true
                 )));
+            }elseif( $fields['username'] == '' || $fields['password'] == '' ) {
+                $errors['error'] = 'Please fill in all details';
             }else{
                 $errors['error'] = 'The username and password supplied do not match';
             }

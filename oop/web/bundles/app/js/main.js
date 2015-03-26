@@ -45,6 +45,8 @@
             // load Handlebars template
             
             var compiledTemplate = this.getHandlebarsTemplate(this.hbTemplateFolder + name);
+            console.log(dataObject);
+            $('.' + dataObject.class).remove();
             $(parent).append(compiledTemplate(dataObject));
 
         },
@@ -79,8 +81,7 @@
                         if(dataObj.authent) {
                             THIS.changeURL('/app/example/admin');
                         }else{
-                            THIS.handlebarsModel('partMsg', { 'class': 'error_message', response : dataObj }, '.form-wrap.js-ajaxElems');
-                            console.log({ 'class': 'error_message', response : dataObj });
+                            THIS.handlebarsModel('partMsg', { 'class': 'error_message', response : dataObj }, 'body');
                         }
                     }
                 });
