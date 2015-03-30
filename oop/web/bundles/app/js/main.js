@@ -66,7 +66,11 @@
 
             ajaxForm.submit(function() {
 
-                var url = $(this).attr('action');
+                var url = $(this).attr('action'), submitButton = $(this).find('input[type="submit"]');
+
+                submitButton.addClass('hidden').after($('<span />', {
+                    'class':'loading'
+                }));
 
                 $.ajax({
                     type: "POST",
@@ -82,6 +86,8 @@
                             THIS.changeURL('/app/example/admin');
                         }else{
                             THIS.handlebarsModel('partMsg', { 'class': 'error_message', response : dataObj }, 'body');
+                            submitButton.removeClass('hidden');
+                            $('.loading').remove();
                         }
                     }
                 });

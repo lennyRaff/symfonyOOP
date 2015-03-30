@@ -59,9 +59,30 @@ fieldset {
 button, html input[type=button], input[type=reset], input[type=submit] {
   margin-top: 20px;
 }
+.submit_container {
+  height: 50px;
+}
+input[type=submit] {
+  border: none;
+  background: #DF8545;
+  color: #fff;
+  padding: 5px 10px;
+}
 .error_message {
   position: relative;
   color: rgb(245, 76, 76);
   width: 50%;
   margin-left: 25%;
+}
+.loading {
+  background: url('/bundles/app/img/loading.gif') 0 0 no-repeat;
+  background-size: 100%;
+  display: inline-block;
+  width: 55px;
+  height: 17px;
+  margin-top: 20px;
+  padding: 5px 10px;
+}
+.hidden{
+  visibility: hidden;
 }
