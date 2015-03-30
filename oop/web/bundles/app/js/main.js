@@ -12,10 +12,11 @@
         adminLoginBtnClick: function() {
             // getting name of template and data associated and make AJAX call
             
-            var THIS = this, jqObj, urlVal, dataObject = {};
-
+            var THIS = this, jqObj, urlVal, dataObject;
+            
             $adminLoginBtns.click(function() {
 
+                dataObject = {};
                 jqObj = this, urlVal = $(jqObj).attr('data-url_val');
 
                 $.each($(jqObj).data(), function(k, v) {
@@ -24,7 +25,7 @@
                         dataObject[k] = v;
                     }
                 });
-
+console.log(dataObject);
                 // call the Handlebars template with AJAX
                 THIS.handlebarsModel(urlVal, dataObject, 'body');
 
@@ -45,7 +46,6 @@
             // load Handlebars template
             
             var compiledTemplate = this.getHandlebarsTemplate(this.hbTemplateFolder + name);
-            console.log(dataObject);
             $('.' + dataObject.class).remove();
             $(parent).append(compiledTemplate(dataObject));
 
