@@ -13,7 +13,7 @@
             // getting name of template and data associated and make AJAX call
             
             var THIS = this, jqObj, urlVal, dataObject;
-            
+
             $adminLoginBtns.click(function() {
 
                 dataObject = {};
@@ -25,7 +25,7 @@
                         dataObject[k] = v;
                     }
                 });
-console.log(dataObject);
+
                 // call the Handlebars template with AJAX
                 THIS.handlebarsModel(urlVal, dataObject, 'body');
 
