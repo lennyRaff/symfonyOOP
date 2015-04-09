@@ -26,11 +26,6 @@ class User
      */
     private $password;
 
-    /**
-     * @var string
-     */
-    private $old_password;
-
 
     /**
      * Get id
@@ -86,29 +81,5 @@ class User
     public function getPassword()
     {
         return $this->password;
-    }
-
-
-    /**
-     * Set old_password
-     *
-     * @param string $oldPassword
-     * @return User
-     */
-    public function setOldPassword($oldPassword)
-    {
-        $this->old_password = $oldPassword;
-
-        return $this;
-    }
-
-    /**
-     * Get old_password
-     *
-     * @return string 
-     */
-    public function getOldPassword()
-    {
-        return $this->old_password;
     }
 }

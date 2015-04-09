@@ -66,11 +66,10 @@
 
             ajaxForm.submit(function() {
 
-                var url = $(this).attr('action'), submitButton = $(this).find('input[type="submit"]');
+                var url = $(this).attr('action'), submitButton = $(this).find('input[type="submit"]'), loader = submitButton.closest('div').find('.loading');
 
-                submitButton.addClass('hidden').after($('<span />', {
-                    'class':'loading'
-                }));
+                submitButton.addClass('hidden');
+                loader.removeClass('hidden');
 
                 $.ajax({
                     type: "POST",
@@ -85,9 +84,10 @@
                         if(dataObj.authent) {
                             THIS.changeURL('/app/example/admin');
                         }else{
-                            THIS.handlebarsModel('partMsg', { 'class': 'error_message', response : dataObj }, 'body');
+                            console.log(dataObj.error);
+                            THIS.handlebarsModel('partMsg', { 'class': 'error_message', response : dataObj.error }, 'body');
                             submitButton.removeClass('hidden');
-                            $('.loading').remove();
+                            loader.addClass('hidden');
                         }
                     }
                 });

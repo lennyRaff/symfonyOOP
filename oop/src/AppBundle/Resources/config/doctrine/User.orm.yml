@@ -15,4 +15,7 @@ AppBundle\Entity\User:
         password:
             type: string
             length: 255
+        old_password:
+            type: string
+            length: 255
     lifecycleCallbacks: {  }

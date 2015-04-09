@@ -1,1 +1,5 @@
-<p class="{{class}}">{{response.error}}</p>
+{{#if class}}
+    <p class="js-ajaxElems {{../class}}">{{response}}</p>
+{{else}}
+    <p class="js-ajaxElems">{{response}}</p>
+{{/if}}
