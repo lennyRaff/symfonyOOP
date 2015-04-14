@@ -24,12 +24,12 @@ class DefaultController extends Controller
      */
     public function loginAction()
     {
-        if(strtoupper($this->getRequest()->getMethod()) === 'POST') {
+        // if(strtoupper($this->getRequest()->getMethod()) === 'POST') {
 
             // get all POST data and find user from db
             $fields = $this->getRequest()->request->all();
             $em = $this->getDoctrine()->getManager();
-            $userRepo = $em->getRepository('AppBundle:User');
+            // $userRepo = $em->getRepository('AppBundle:User');
             $user = $em->getRepository('AppBundle:User')->findOneBy(array('username' => $fields['username'], 'password' => sha1($fields['password'])));
 
             if( is_null($user) === false ) {
@@ -45,13 +45,24 @@ class DefaultController extends Controller
             }else{
                 $errors['error'] = 'The username and password supplied do not match';
             }
-        }else{
-            $errors['error'] = 'The method you supplied is invalid';
-        }
+        // }else{
+        //     $errors['error'] = 'The method you supplied is invalid';
+        // }
         // return $this->redirectToRoute('homepage', array(json_encode($errors)));
         return new Response(json_encode(
             $errors
         ));
+    }
+
+    /**
+     * @Route("/app/example/signup", name="signuppage")
+     * @Method("POST")
+     */
+    public function signupAction()
+    {
+        // get all POST data and find user from db
+        $fields = $this->getRequest()->request->all();
+        $em = $this->getDoctrine()->getManager();
     }
 
     /**

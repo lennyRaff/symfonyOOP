@@ -40,12 +40,7 @@ class __TwigTemplate_558547a2fd025657b4feff861bbe99f68c983eb0a3ff255c2a894a8556f
         ob_start();
         // line 4
         echo "        <div class=\"homepageWrapper\">
-            <header>
-                <ul class=\"admin_log\">
-                    <li data-url_val=\"dialogue\" data-form_action=\"/app/example/login\" data-button_text=\"Log in\" data-title=\"Connect to your account\">Log in</li>
-                    <li data-url_val=\"dialogue\" data-form_action=\"/app/example/login\" data-button_text=\"Sign up\" data-title=\"Sign up for a free account\" data-button_sign_up=\"1\">Sign up</li>
-                </ul>
-            </header>
+            
         </div>
     ";
         echo trim(preg_replace('/>\s+</', '><', ob_get_clean()));

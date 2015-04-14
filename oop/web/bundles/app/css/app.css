@@ -46,8 +46,8 @@ header {
   margin: 0;
   text-align: center;
   color: #737171;
-  -webkit-transition: all .4s;
-  transition: all .4s;
+  -webkit-transition: all .2s;
+  transition: all .2s;
 }
 .overlay.whiteBg {
   background-color: #fff;
@@ -61,7 +61,7 @@ fieldset {
   text-align: left;
 }
 input[type=text], input[type=textarea], input[type=password], select {
-  color: rgb(103, 103, 103);
+  color: rgb(74, 74, 74);
   outline: none;
   padding: 2px 4px;
 }
@@ -78,9 +78,8 @@ button, html input[type=button], input[type=reset], input[type=submit] {
 input[type=submit] {
   color: #fff;
   padding: 8px 14px;
-  background-color: rgb(103, 103, 103);
+  background-color: rgb(74, 74, 74);
   vertical-align: bottom;
-  box-shadow: 1px 1px 1px #E2E2E2;
 }
 input[type=submit]:hover, input[type=submit]:active{
   box-shadow: none;
@@ -102,7 +101,7 @@ input[type=submit]:hover, input[type=submit]:active{
   display: inline-block;
   width: 36px;
   height: 36px;
-  background-color: rgb(103, 103, 103);
+  background-color: rgb(74, 74, 74);
   border-radius: 25px;
   vertical-align: bottom;
 }

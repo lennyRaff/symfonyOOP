@@ -39,16 +39,29 @@ class __TwigTemplate_d4b9cfa62cba615257888d82dce196dab0db1c29a541899c3b00d63470c
         echo "\" /> 
     </head>
     <body>
-        <div class=\"site_container\">
-            ";
+        ";
+        // line 16
+        ob_start();
         // line 17
+        echo "        <div class=\"site_container\">
+            <header>
+                <ul class=\"admin_log\">
+                    <li data-url_val=\"dialogue\" data-form_action=\"/app/example/login\" data-button_text=\"Log in\" data-title=\"Connect to your account\">Log in</li>
+                    <li data-url_val=\"dialogue\" data-form_action=\"/app/example/signup\" data-button_text=\"Sign up\" data-title=\"Sign up for a free account\" data-button_sign_up=\"1\">Sign up</li>
+                </ul>
+            </header>
+            ";
+        // line 24
         $this->displayBlock('body', $context, $blocks);
-        // line 18
+        // line 25
         echo "        </div>
         ";
-        // line 19
+        // line 26
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 24
+        // line 31
+        echo "        ";
+        echo trim(preg_replace('/>\s+</', '><', ob_get_clean()));
+        // line 32
         echo "    </body>
 </html>
 ";
@@ -75,24 +88,24 @@ class __TwigTemplate_d4b9cfa62cba615257888d82dce196dab0db1c29a541899c3b00d63470c
         ";
     }
 
-    // line 17
+    // line 24
     public function block_body($context, array $blocks = array())
     {
     }
 
-    // line 19
+    // line 26
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 20
+        // line 27
         echo "            <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/app/js/thirdparty/jquery-1.11.2.min.js"), "html", null, true);
         echo "\" type=\"text/javascript\"></script>
             <script src=\"";
-        // line 21
+        // line 28
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/app/js/thirdparty/handlebars-1.0.rc.1.min.js"), "html", null, true);
         echo "\" type=\"text/javascript\"></script>
             <script src=\"";
-        // line 22
+        // line 29
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/app/js/main.js"), "html", null, true);
         echo "\" type=\"text/javascript\"></script>
         ";
@@ -110,6 +123,6 @@ class __TwigTemplate_d4b9cfa62cba615257888d82dce196dab0db1c29a541899c3b00d63470c
 
     public function getDebugInfo()
     {
-        return array (  96 => 22,  92 => 21,  87 => 20,  84 => 19,  79 => 17,  73 => 11,  67 => 9,  64 => 8,  58 => 7,  52 => 24,  50 => 19,  47 => 18,  45 => 17,  37 => 13,  35 => 8,  31 => 7,  23 => 1,);
+        return array (  109 => 29,  105 => 28,  100 => 27,  97 => 26,  92 => 24,  86 => 11,  80 => 9,  77 => 8,  71 => 7,  65 => 32,  62 => 31,  60 => 26,  57 => 25,  55 => 24,  46 => 17,  44 => 16,  37 => 13,  35 => 8,  31 => 7,  23 => 1,);
     }
 }

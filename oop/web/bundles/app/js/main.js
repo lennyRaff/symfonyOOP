@@ -32,7 +32,7 @@
                 // if we are adding user form to the page
                 if( urlVal == 'dialogue' ) {
                     // fading effect of overlay
-                    THIS.setTimeoutFn("$('.overlay').addClass('whiteBg');", 50);
+                    THIS.setTimeoutFn("$('.overlay').addClass('whiteBg');", 10);
 
                     $('.overlay').click(function(e) {
                         $(this).add('.js-ajaxElems').remove();

@@ -13,7 +13,14 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" /> 
     </head>
     <body>
+        {% spaceless %}
         <div class="site_container">
+            <header>
+                <ul class="admin_log">
+                    <li data-url_val="dialogue" data-form_action="/app/example/login" data-button_text="Log in" data-title="Connect to your account">Log in</li>
+                    <li data-url_val="dialogue" data-form_action="/app/example/signup" data-button_text="Sign up" data-title="Sign up for a free account" data-button_sign_up="1">Sign up</li>
+                </ul>
+            </header>
             {% block body %}{% endblock %}
         </div>
         {% block javascripts %}
@@ -21,5 +28,6 @@
             <script src="{{ asset( 'bundles/app/js/thirdparty/handlebars-1.0.rc.1.min.js' ) }}" type="text/javascript"></script>
             <script src="{{ asset( 'bundles/app/js/main.js' ) }}" type="text/javascript"></script>
         {% endblock %}
+        {% endspaceless %}
     </body>
 </html>

@@ -149,6 +149,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
             not_loginpage:
 
+            // signuppage
+            if ($pathinfo === '/app/example/signup') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_signuppage;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::signupAction',  '_route' => 'signuppage',);
+            }
+            not_signuppage:
+
             // adminpage
             if ($pathinfo === '/app/example/admin') {
                 return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::adminAction',  '_route' => 'adminpage',);
