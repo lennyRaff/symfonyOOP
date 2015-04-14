@@ -63,6 +63,14 @@ class DefaultController extends Controller
         // get all POST data and find user from db
         $fields = $this->getRequest()->request->all();
         $em = $this->getDoctrine()->getManager();
+
+        $userRepo = $em->getRepository('AppBundle:User');
+
+        $response = $userRepo->getLogin($em, $fields);
+
+        return new Response(json_encode(
+            $response
+        ));
     }
 
     /**
