@@ -18,7 +18,7 @@ class User
      * @var string
      * @Assert\NotBlank()
      */
-    public $username;
+    public $email;
 
     /**
      * @var string
@@ -43,26 +43,26 @@ class User
     }
 
     /**
-     * Set username
+     * Set email
      *
-     * @param string $username
+     * @param string $email
      * @return User
      */
-    public function setUsername($username)
+    public function setEmail($email)
     {
-        $this->username = $username;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * Get username
+     * Get email
      *
      * @return string 
      */
-    public function getUsername()
+    public function getEmail()
     {
-        return $this->username;
+        return $this->email;
     }
 
     /**
@@ -87,7 +87,6 @@ class User
     {
         return $this->password;
     }
-
 
     /**
      * Set old_password

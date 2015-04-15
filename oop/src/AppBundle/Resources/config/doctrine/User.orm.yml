@@ -9,7 +9,7 @@ AppBundle\Entity\User:
             generator:
                 strategy: AUTO
     fields:
-        username:
+        email:
             type: string
             length: 255
         password:

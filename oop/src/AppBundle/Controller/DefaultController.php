@@ -30,7 +30,7 @@ class DefaultController extends Controller
             $fields = $this->getRequest()->request->all();
             $em = $this->getDoctrine()->getManager();
             // $userRepo = $em->getRepository('AppBundle:User');
-            $user = $em->getRepository('AppBundle:User')->findOneBy(array('username' => $fields['username'], 'password' => sha1($fields['password'])));
+            $user = $em->getRepository('AppBundle:User')->findOneBy(array('email' => $fields['email'], 'password' => sha1($fields['password'])));
 
             if( is_null($user) === false ) {
 
@@ -40,10 +40,10 @@ class DefaultController extends Controller
                 return new Response(json_encode(array(
                     'authent' => true
                 )));
-            }elseif( $fields['username'] == '' || $fields['password'] == '' ) {
+            }elseif( $fields['email'] == '' || $fields['password'] == '' ) {
                 $errors['error'] = 'Please fill in all details';
             }else{
-                $errors['error'] = 'The username and password supplied do not match';
+                $errors['error'] = 'The email and password supplied do not match';
             }
         // }else{
         //     $errors['error'] = 'The method you supplied is invalid';
